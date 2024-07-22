@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+repositories {
+    mavenCentral()
+    // Puedes agregar otros repositorios si es necesario, por ejemplo:
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    testImplementation 'com.intuit.karate:karate-junit5:1.2.0'
+    testImplementation 'com.intuit.karate:karate-core:1.2.0'
+    testImplementation 'net.masterthought:cucumber-reporting:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "karate.env", System.properties.getProperty("karate.env")
+    systemProperty "baseUrl", System.properties.getProperty("baseUrl")
+    systemProperty "user", System.properties.getProperty("user")
+    outputs.upToDateWhen {false}
+}
+
+test {
+    useJUnitPlatform()
+}
